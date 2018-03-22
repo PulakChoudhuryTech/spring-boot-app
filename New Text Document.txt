@@ -1,0 +1,8 @@
+
+down vote
+Your Maven cache is corrupted on the second machine. The JAR can't be opened, that's why you get this exception.
+
+You can fix that by running this command on the second machine for that project:
+
+mvn dependency:purge-local-repository
+If that doesn't work, try remove your local repo on that machine (~/.m2/repository/org/springframework) and run mvn package again.
