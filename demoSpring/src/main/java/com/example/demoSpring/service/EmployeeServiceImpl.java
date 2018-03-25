@@ -2,6 +2,7 @@ package com.example.demoSpring.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,16 +15,24 @@ public class EmployeeServiceImpl implements EmployeeService {
 	
 	@Autowired
 	EmployeeRepository employeeRepository;
-		
+	
 	public void addEmployee(Employee emp) {
 		employeeRepository.save(emp);
+	}
+	
+	public void addEmployeeDetails(Employee empDetail) {
+		employeeRepository.save(empDetail);
 	}
 	
 	public ArrayList<Employee> getAllEmployees() {
 		return (ArrayList<Employee>) employeeRepository.findAll();
 	}
 	
-	public String getEmployeeById() {
-		return null;
+//	public ArrayList<Employee> getFullEmployeeDetails() {
+//		return employeeRepository.findAllEmployeeFullDetails();
+//	}
+	
+	public Optional<Employee> getEmployeeById(String eid) {
+		return employeeRepository.findByEid(eid);
 	}
 }
