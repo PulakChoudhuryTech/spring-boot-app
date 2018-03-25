@@ -7,6 +7,8 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.demoSpring.dao.EmployeeJDBCDao;
+import com.example.demoSpring.dao.EmployeeObjectMapper;
 import com.example.demoSpring.dao.EmployeeOrgRepository;
 import com.example.demoSpring.dao.EmployeeRepository;
 import com.example.demoSpring.model.Employee;
@@ -21,6 +23,9 @@ public class EmployeeServiceImpl implements EmployeeService {
 	@Autowired
 	EmployeeOrgRepository empOrgRepository;
 	
+	@Autowired
+	EmployeeJDBCDao employeeJdbcDao;
+	
 	public void addEmployee(Employee emp) {
 		employeeRepository.save(emp);
 	}
@@ -33,11 +38,20 @@ public class EmployeeServiceImpl implements EmployeeService {
 		return (ArrayList<Employee>) employeeRepository.findAll();
 	}
 	
-	public Optional<Employee> getEmployeeById(String eid) {
-		return employeeRepository.findById(eid);
+	public EmployeeObjectMapper getEmployeeById(String eid) {
+		return employeeRepository.findByEid(eid);
+	}
+	
+	public Employee getEmployeeSpecificById(String eid) {
+		return employeeRepository.findEmpByEid(eid);
 	}
 	
 	public void addEmployeeJobProfile(EmployeeJobProfile empJob) {
 		empOrgRepository.save(empJob);
+	}
+	
+	public ArrayList<Employee> filterEmployeeByBand(String band) {
+//		return (ArrayList<Employee>) employeeRepository.findEmpByBand(band);
+		return (ArrayList<Employee>) employeeJdbcDao.findEmployeesByBand(band);
 	}
 }

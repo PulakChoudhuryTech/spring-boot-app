@@ -6,6 +6,7 @@ import java.util.Optional;
 
 import org.springframework.data.jpa.repository.Query;
 
+import com.example.demoSpring.dao.EmployeeObjectMapper;
 import com.example.demoSpring.model.Employee;
 import com.example.demoSpring.model.EmployeeJobProfile;
 
@@ -15,9 +16,13 @@ public interface EmployeeService {
 
 	void addEmployee(Employee emp);
 	
-	Optional<Employee> getEmployeeById(String eid);
+	EmployeeObjectMapper getEmployeeById(String eid);
+	
+	Employee getEmployeeSpecificById(String eid);
 
 	void addEmployeeDetails(Employee empDetails);
 
-	void addEmployeeJobProfile(EmployeeJobProfile empJob);	
+	void addEmployeeJobProfile(EmployeeJobProfile empJob);
+
+	ArrayList<Employee> filterEmployeeByBand(String band);
 }

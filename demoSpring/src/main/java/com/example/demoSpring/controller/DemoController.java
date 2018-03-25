@@ -5,12 +5,15 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.demoSpring.dao.EmployeeObjectMapper;
 import com.example.demoSpring.model.Employee;
 import com.example.demoSpring.model.EmployeeJobProfile;
 import com.example.demoSpring.model.EmployeeSkills;
@@ -48,15 +51,26 @@ public class DemoController {
 		return empService.getAllEmployees();
 	}
 	
-	@RequestMapping(value = "/employee/{eid}")
-	public Optional<Employee> getEmployeeById(@PathVariable("eid") String eid) {
+	@RequestMapping(value = "/employeeSpecific/{eid}")
+	public EmployeeObjectMapper getEmployeeById(@PathVariable("eid") String eid) {
 		return empService.getEmployeeById(eid);
+	}
+	
+	@RequestMapping(value = "/employee/{eid}")
+	public Employee getEmpSepecificById(@PathVariable("eid") String eid) {
+		return empService.getEmployeeSpecificById(eid);
 	}
 	
 	@RequestMapping(value = "/employee/jobprofile", method = RequestMethod.POST)
 	public String addEmployeeDetails(@RequestBody EmployeeJobProfile empJob) {
 		empService.addEmployeeJobProfile(empJob);
 		return "Success";
+	}
+	
+	@RequestMapping(value = "/employee/filter")
+	public ArrayList<Employee> filterEmployeeByBand(@RequestParam String band) {
+		System.out.println(band);
+		return empService.filterEmployeeByBand(band);
 	}
 	
 }

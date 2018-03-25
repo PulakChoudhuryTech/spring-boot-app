@@ -1,7 +1,9 @@
 package com.example.demoSpring.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -13,6 +15,15 @@ public class EmployeeJobProfile {
 	String band;
 	int salary;
 	
+//	Employee emp;
+//	
+//	@OneToOne(mappedBy="employeejob", cascade=CascadeType.ALL)
+//	public Employee getEmp() {
+//		return emp;
+//	}
+//	public void setEmp(Employee emp) {
+//		this.emp = emp;
+//	}
 	public String getDesignation() {
 		return designation;
 	}
