@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demoSpring.model.Employee;
+import com.example.demoSpring.model.EmployeeJobProfile;
 import com.example.demoSpring.model.EmployeeSkills;
 import com.example.demoSpring.service.EmployeeService;
 
@@ -50,6 +51,12 @@ public class DemoController {
 	@RequestMapping(value = "/employee/{eid}")
 	public Optional<Employee> getEmployeeById(@PathVariable("eid") String eid) {
 		return empService.getEmployeeById(eid);
+	}
+	
+	@RequestMapping(value = "/employee/jobprofile", method = RequestMethod.POST)
+	public String addEmployeeDetails(@RequestBody EmployeeJobProfile empJob) {
+		empService.addEmployeeJobProfile(empJob);
+		return "Success";
 	}
 	
 }

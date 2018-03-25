@@ -2,12 +2,18 @@ package com.example.demoSpring.model;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.SecondaryTable;
 import javax.persistence.Table;
+
+import org.springframework.beans.factory.annotation.Autowired;
 
 @Entity
 @Table(name="employee")
@@ -23,8 +29,19 @@ public class Employee implements Serializable {
 	String address;
 	int contact;
 	
+	@Autowired
 	EmployeeSkills empSkills;
+
+	EmployeeJobProfile employeejob;
 	
+	@OneToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+	@JoinColumn(name="eid")
+	public EmployeeJobProfile getEmployeejob() {
+		return employeejob;
+	}
+	public void setEmployeejob(EmployeeJobProfile employeejob) {
+		this.employeejob = employeejob;
+	}
 	@Embedded
 	public EmployeeSkills getEmpSkills() {
 		return empSkills;

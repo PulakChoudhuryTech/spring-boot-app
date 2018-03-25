@@ -7,14 +7,19 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.demoSpring.dao.EmployeeOrgRepository;
 import com.example.demoSpring.dao.EmployeeRepository;
 import com.example.demoSpring.model.Employee;
+import com.example.demoSpring.model.EmployeeJobProfile;
 
 @Service("EmployeeService")
 public class EmployeeServiceImpl implements EmployeeService {
 	
 	@Autowired
 	EmployeeRepository employeeRepository;
+	
+	@Autowired
+	EmployeeOrgRepository empOrgRepository;
 	
 	public void addEmployee(Employee emp) {
 		employeeRepository.save(emp);
@@ -28,11 +33,11 @@ public class EmployeeServiceImpl implements EmployeeService {
 		return (ArrayList<Employee>) employeeRepository.findAll();
 	}
 	
-//	public ArrayList<Employee> getFullEmployeeDetails() {
-//		return employeeRepository.findAllEmployeeFullDetails();
-//	}
-	
 	public Optional<Employee> getEmployeeById(String eid) {
-		return employeeRepository.findByEid(eid);
+		return employeeRepository.findById(eid);
+	}
+	
+	public void addEmployeeJobProfile(EmployeeJobProfile empJob) {
+		empOrgRepository.save(empJob);
 	}
 }

@@ -16,7 +16,7 @@ public interface EmployeeRepository extends CrudRepository<Employee, String> {
 	Optional<Employee> findByEid(@Param("eid") String eid);
 	
 //	@Query("select e.name, e.age, e.address, e.contact, e.email from employee e join employee_details ed on e.eid = ed.eid")
-//	ArrayList<Employee> findAllEmployeeFullDetails();
+//	ArrayList<Employee> findAllEmployees();
 	
 	
 

@@ -7,6 +7,7 @@ import java.util.Optional;
 import org.springframework.data.jpa.repository.Query;
 
 import com.example.demoSpring.model.Employee;
+import com.example.demoSpring.model.EmployeeJobProfile;
 
 public interface EmployeeService {
 	
@@ -16,5 +17,7 @@ public interface EmployeeService {
 	
 	Optional<Employee> getEmployeeById(String eid);
 
-	void addEmployeeDetails(Employee empDetails);	
+	void addEmployeeDetails(Employee empDetails);
+
+	void addEmployeeJobProfile(EmployeeJobProfile empJob);	
 }
