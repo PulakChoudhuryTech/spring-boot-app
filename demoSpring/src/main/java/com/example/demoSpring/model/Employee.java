@@ -15,7 +15,11 @@ import javax.persistence.Table;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+
 @Entity
+@JsonInclude(Include.NON_NULL)
 @Table(name="employee")
 @SecondaryTable(name="employee_details")
 public class Employee implements Serializable {
