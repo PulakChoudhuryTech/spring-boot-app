@@ -9,6 +9,7 @@ import org.springframework.data.jpa.repository.Query;
 import com.example.demoSpring.dao.EmployeeObjectMapper;
 import com.example.demoSpring.model.Employee;
 import com.example.demoSpring.model.EmployeeJobProfile;
+import com.example.demoSpring.model.ExternalSource;
 
 public interface EmployeeService {
 	
@@ -25,4 +26,8 @@ public interface EmployeeService {
 	void addEmployeeJobProfile(EmployeeJobProfile empJob);
 
 	ArrayList<Employee> filterEmployeeByBand(String band);
+
+	Optional<ExternalSource> getExternalSource(Integer id);
+
+	List<ExternalSource> getAllMetricSources();
 }

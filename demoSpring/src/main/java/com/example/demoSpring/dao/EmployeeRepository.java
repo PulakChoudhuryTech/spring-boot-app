@@ -11,7 +11,7 @@ import org.springframework.data.repository.query.Param;
 import com.example.demoSpring.model.Employee;
 import com.example.demoSpring.model.EmployeeJobProfile;
 
-public interface EmployeeRepository extends JpaRepository<Employee, String> {
+public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
 	
 	
 	@Query("select new com.example.demoSpring.dao.EmployeeObjectMapper(u.name, u.age, u.empSkills, u.employeejob) from Employee u where u.eid = :eid")

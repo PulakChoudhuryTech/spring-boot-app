@@ -17,6 +17,7 @@ import com.example.demoSpring.dao.EmployeeObjectMapper;
 import com.example.demoSpring.model.Employee;
 import com.example.demoSpring.model.EmployeeJobProfile;
 import com.example.demoSpring.model.EmployeeSkills;
+import com.example.demoSpring.model.ExternalSource;
 import com.example.demoSpring.service.EmployeeService;
 
 @RestController
@@ -73,4 +74,13 @@ public class DemoController {
 		return empService.filterEmployeeByBand(band);
 	}
 	
+	@RequestMapping(value = "/getMetricSource/{id}")
+	public Optional<ExternalSource> getMetricSource(@PathVariable("id") Integer id) {
+		return empService.getExternalSource(id);
+	}
+	
+	@RequestMapping(value = "/getAllMetricSources")
+	public List<ExternalSource> getAllMetricSources() {
+		return empService.getAllMetricSources();
+	}
 }

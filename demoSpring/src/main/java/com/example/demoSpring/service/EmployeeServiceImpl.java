@@ -11,8 +11,10 @@ import com.example.demoSpring.dao.EmployeeJDBCDao;
 import com.example.demoSpring.dao.EmployeeObjectMapper;
 import com.example.demoSpring.dao.EmployeeOrgRepository;
 import com.example.demoSpring.dao.EmployeeRepository;
+import com.example.demoSpring.dao.ExternalSourceRepository;
 import com.example.demoSpring.model.Employee;
 import com.example.demoSpring.model.EmployeeJobProfile;
+import com.example.demoSpring.model.ExternalSource;
 
 @Service("EmployeeService")
 public class EmployeeServiceImpl implements EmployeeService {
@@ -25,6 +27,9 @@ public class EmployeeServiceImpl implements EmployeeService {
 	
 	@Autowired
 	EmployeeJDBCDao employeeJdbcDao;
+	
+	@Autowired
+	ExternalSourceRepository externalSourceRepository;
 	
 	public void addEmployee(Employee emp) {
 		employeeRepository.save(emp);
@@ -53,5 +58,17 @@ public class EmployeeServiceImpl implements EmployeeService {
 	public ArrayList<Employee> filterEmployeeByBand(String band) {
 //		return (ArrayList<Employee>) employeeRepository.findEmpByBand(band);
 		return (ArrayList<Employee>) employeeJdbcDao.findEmployeesByBand(band);
+	}
+
+	@Override
+	public Optional<ExternalSource> getExternalSource(Integer id) {
+		// TODO Auto-generated method stub
+		return externalSourceRepository.findById(id);
+	}
+
+	@Override
+	public List<ExternalSource> getAllMetricSources() {
+		// TODO Auto-generated method stub
+		return externalSourceRepository.findAll();
 	}
 }
